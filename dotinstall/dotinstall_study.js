@@ -112,4 +112,23 @@
            fill: 'red'
        });
 
+    var svg3 = d3.select('body').append('svg').attr({width: w, height: h});
+
+    var xScale = d3.scale.linear()
+                         .domain([0, d3.max(dataset)])
+                         .range([0, w])
+                         .nice();
+
+    svg3.selectAll('rect')
+       .data(dataset)
+       .enter()
+       .append('rect')
+       .attr({
+           x: 0,
+           y: function(d, i) { return i * 40; },
+           width: function(d) { return xScale(d); },
+           height: 30,
+           fill: 'blue'
+       });
+
 })();
