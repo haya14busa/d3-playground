@@ -51,12 +51,65 @@
        .data(dataset) // data biding
        .enter()
        .append('circle')
+       .transition() // millsecond
+       .delay(function(d, i) {
+           return i * 300;
+       }) // shift
+       .duration(2000)
+       .ease('bounce')
+       .each('start', function() {
+           d3.select(this).attr({
+               fill: 'green',
+               r: 0,
+               cy: h
+           });
+       })
        .attr({
            cx: function(d, i) { return  50 + (i * 100); },
            cy: h / 2,
            r: function(d) { return d;},
            fill: 'red'
+       })
+       .each('end', function() {
+           d3.select(this)
+             .transition()
+             .duration(300)
+             .attr({
+                 fill: 'pink',
+                 r: 0,
+                 cy: 0
+             });
        });
 
+    /*
+     * SVG
+     */
+    var dataset = [11, 25, 45, 30, 33]; // radius
+
+    var w = 500;
+    var h = 200;
+
+    var svg2 = d3.select('body').append('svg').attr({width: w, height: h});
+
+    svg2.selectAll('circle')
+       .data(dataset)
+       .enter()
+       .append('circle')
+       .on('mouseover', function(d) {
+           d3.select(this).attr('fill', 'orange');
+       })
+       .on('mouseout', function(d) {
+           d3.select(this).attr('fill', 'red');
+       })
+       .on('click', function(d) {
+           var rs = d3.select(this).attr('r');
+           console.log(rs);
+       })
+       .attr({
+           cx: function(d, i) { return 50 + (i * 100); },
+           cy: h / 2,
+           r: function(d) { return d; },
+           fill: 'red'
+       });
 
 })();
