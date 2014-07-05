@@ -112,23 +112,36 @@
            fill: 'red'
        });
 
-    var svg3 = d3.select('body').append('svg').attr({width: w, height: h});
+    var padding = 20;
+
+    var svg3 = d3.select('body').append('svg').attr({width: w + 50, height: h + 100});
 
     var xScale = d3.scale.linear()
                          .domain([0, d3.max(dataset)])
-                         .range([0, w])
+                         .range([padding, w - padding])
                          .nice();
 
+    var xAxis = d3.svg.axis()
+                      .scale(xScale)
+                      .orient('bottom');
+
+    svg3.append('g') // group
+        .attr({
+            class: 'axis',
+            transform: 'translate(0, 200)'
+        })
+        .call(xAxis);
+
     svg3.selectAll('rect')
-       .data(dataset)
-       .enter()
-       .append('rect')
-       .attr({
-           x: 0,
-           y: function(d, i) { return i * 40; },
-           width: function(d) { return xScale(d); },
-           height: 30,
-           fill: 'blue'
-       });
+        .data(dataset)
+        .enter()
+        .append('rect')
+        .attr({
+            x: padding,
+            y: function(d, i) { return i * 40; },
+            width: function(d) { return xScale(d) - padding; },
+            height: 30,
+            fill: 'blue'
+        });
 
 })();
