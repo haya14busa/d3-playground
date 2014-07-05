@@ -9,11 +9,4 @@ D3.js入門
 - [D3.js - 日本語ドキュメント](http://ja.d3js.node.ws/)
 - Data driven Document
 
-02
---
-
-03
---
-
-04
---
+http://haya14busa.github.io/d3-playground/dotinstall/
