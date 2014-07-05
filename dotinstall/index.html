@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Excercise of D3</title>
+</head>
+<body>
+
+  <p>Vim 1</p>
+  <p>Vim 2</p>
+  <p>Vim 3</p>
+
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script>
+    /*
+     * 1. Select
+     *    - text,attr,style,append,remove
+     *
+     */
+    d3.select("body").selectAll("p") // Select
+      .text("Happy Vimming!");       // Manipulate
+  </script>
+</body>
+</html>
